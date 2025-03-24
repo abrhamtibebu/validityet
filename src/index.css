@@ -1,0 +1,216 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 20%; /* Dark gray text */
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 20%;
+
+    --primary: 49 100% 50%; /* Yellow */
+    --primary-foreground: 0 0% 20%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 20%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 49 100% 50%; /* Yellow */
+    --accent-foreground: 0 0% 20%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 0 0% 20%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 20%; /* Dark gray */
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 20%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 20%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 49 100% 50%; /* Yellow */
+    --primary-foreground: 0 0% 20%;
+
+    --secondary: 0 0% 25%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 25%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 49 100% 50%; /* Yellow */
+    --accent-foreground: 0 0% 20%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 25%;
+    --input: 0 0% 25%;
+    --ring: 0 0% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    scroll-behavior: smooth;
+  }
+
+  /* Custom utilities */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-dark to-brand-yellow;
+  }
+
+  .section-padding {
+    @apply py-20 md:py-24 lg:py-32;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-8 tracking-tight;
+  }
+
+  .section-subtitle {
+    @apply text-xl md:text-2xl font-medium text-gray-600 max-w-3xl mx-auto mb-16;
+  }
+
+  .container-custom {
+    @apply container max-w-7xl mx-auto px-4 md:px-8;
+  }
+
+  .blur-overlay {
+    @apply absolute inset-0 backdrop-blur-lg bg-white/30;
+  }
+
+  /* Custom animations */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Modern Card Effects */
+  .modern-card {
+    @apply bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2;
+  }
+
+  /* Glass card effect */
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-lg;
+  }
+
+  /* Service card hover effect */
+  .service-card {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-2;
+  }
+
+  /* Modern Nav Link Effect */
+  .active-nav-link {
+    @apply font-semibold;
+  }
+
+  /* Button styles - updated for yellow/dark theme with modern hover effects */
+  .btn-primary {
+    @apply bg-brand-yellow text-brand-dark px-6 py-3 rounded-lg font-medium transition-all duration-300 
+           hover:shadow-lg hover:bg-brand-dark hover:text-brand-yellow active:translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply bg-brand-dark text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 
+           hover:shadow-lg hover:bg-brand-yellow hover:text-brand-dark active:translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply border-2 border-brand-dark text-brand-dark px-6 py-3 rounded-lg font-medium transition-all duration-300 
+           hover:bg-brand-dark hover:text-brand-yellow active:translate-y-0.5;
+  }
+
+  /* Logo animation */
+  .logo-hover {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-brand-yellow/60 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-brand-yellow;
+  }
+  
+  /* Modern hover effects */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1;
+  }
+  
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-lg hover:shadow-brand-yellow/20;
+  }
+  
+  /* Image hover effects */
+  .img-hover-zoom {
+    @apply overflow-hidden;
+  }
+  
+  .img-hover-zoom img {
+    @apply transition-transform duration-500 hover:scale-110;
+  }
+  
+  /* Modern card transitions */
+  .card-hover-effect {
+    @apply transition-all duration-300 hover:shadow-xl;
+  }
+  
+  /* Icon hover effects */
+  .icon-hover {
+    @apply transition-all duration-300 hover:text-brand-yellow;
+  }
+}
+
+
+button{
+  background-color: #fed700;
+}
