@@ -74,14 +74,14 @@ const Services = () => {
       title: "Web Design & Development",
       description:
         "Custom website solutions that combine stunning design with seamless functionality.",
-      features: ["UI/UX Design", "Responsive Development", "E-commerce", "Website Maintenance"]
+      features: ["UI/UX Design", "Responsive Development", "E-commerce", "Website Maintenance & Management"]
     },
     {
       icon: <CalendarDays className="h-10 w-10 text-brand-dark" />,
       title: "Event Management",
       description:
         "End-to-end event planning and execution services for corporate and promotional events.",
-      features: ["Ushering Services", "Event Planning", "Venue Selection", "Post-Event Analysis"]
+      features: ["Ushering Services", "Event Planning", "Venue Selection", "Post-Event Analysis", "Managed Wi-Fi Services"]
     },
     {
       icon: <BarChart className="h-10 w-10 text-brand-dark" />,

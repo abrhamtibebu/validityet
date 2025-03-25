@@ -46,7 +46,7 @@ const Portfolio = () => {
       id: 5,
       title: "Big5 Ethiopia - Ushering Services",
       category: "event",
-      description: "Provided full ushering and guest handling services for 2 consecutive years at Big5 Construction Ethiopia events.",
+      description: "Provided full ushering and guest handling services for 2 consecutive Evenets at Big5 Construction Ethiopia.",
       image: "https://www.big5constructethiopia.com/wp-content/uploads/sites/13/2022/09/logo-big5-construct-ethiopia-2024.png",
       link: "https://www.big5constructethiopia.com/",
       technologies: ["Ushering Services", "Guest Management", "Event Coordination"]

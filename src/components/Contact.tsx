@@ -1,10 +1,5 @@
-
 import { useState } from "react";
-import { 
-  MapPin, 
-  Phone, 
-  Mail 
-} from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +10,10 @@ const Contact = () => {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -23,22 +22,39 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Here you would normally send the data to a server
-    
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      company: "",
-      message: "",
-    });
-    
-    // Show success message (in a real app, you'd use a toast or other notification)
-    alert("Your message has been sent successfully!");
+    setLoading(true);
+    setError("");
+    setSuccess("");
+
+    try {
+      const response = await fetch("http://localhost:5000/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSuccess("Your message has been sent successfully!");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          message: "",
+        });
+      } else {
+        setError("Failed to send the message. Please try again.");
+      }
+    } catch (err) {
+      setError("Something went wrong. Please check your internet connection and try again.");
+      console.error("Error:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -53,7 +69,7 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="bg-white p-8 rounded-xl shadow-lg h-full flex flex-col">
             <h3 className="text-2xl font-display font-bold mb-6">Send Us a Message</h3>
-            
+
             <form onSubmit={handleSubmit} className="space-y-6 flex-grow flex flex-col">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -85,7 +101,7 @@ const Contact = () => {
                   />
                 </div>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
@@ -114,7 +130,7 @@ const Contact = () => {
                   />
                 </div>
               </div>
-              
+
               <div className="flex-grow">
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
                   Your Message *
@@ -129,14 +145,18 @@ const Contact = () => {
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-yellow focus:border-brand-yellow transition-all duration-300 flex-grow"
                 ></textarea>
               </div>
-              
+
+              {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+              {success && <p className="text-green-500 text-sm text-center">{success}</p>}
+
               <button
                 type="submit"
                 className="btn-primary w-full mt-auto"
+                disabled={loading}
               >
-                Send Message
+                {loading ? "Sending..." : "Send Message"}
               </button>
-              
+
               <p className="text-xs text-gray-500 text-center">
                 By submitting this form, you agree to our privacy policy.
               </p>
